@@ -43,7 +43,7 @@ void startTask2(void *parameter){
            if(c == 0){
               incomingByte = msg[i];
               // say what you got:
-              Serial.print("I received: ");
+              Serial.print("Updated LED delay to:  ");
               Serial.println(incomingByte, DEC);
               i=0; 
            }
@@ -68,14 +68,9 @@ void setup() {
 
   //Wait a moment to start (so we don't miss Serial output)
   vTaskDelay(1000/portTICK_PERIOD_MS);
-  Serial.println();
   Serial.println("FreeRTOS TASK Scheduling");
-
-  // Print self priority
-  Serial.print("Setup and loop task running core");
-  Serial.print(xPortGetCoreID());
-  Serial.print("with priority");
-  Serial.print(uxTaskPriorityGet(NULL));
+  Serial.println("Multi-task LED Development");
+  Serial.println("Enter a number in milliseconds to change the LED delay.");
 
   //Task to run forever
   xTaskCreatePinnedToCore(startTask1, // Function to be called
